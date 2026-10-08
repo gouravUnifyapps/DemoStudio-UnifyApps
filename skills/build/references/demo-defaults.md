@@ -1,0 +1,130 @@
+# Demo defaults
+
+Decisions Demo Studio takes without asking. Nebula's `fast-defaults.md` (in the installed
+Nebula, `skills/sonic-scoping/references/`) stays the fallback for anything not named here;
+where the two disagree, this file wins. Every default used in a brief is echoed under
+`## Assumptions` so the person can correct it afterwards, and the runbook lists it under
+`Decisions taken for you` with the profile line that would have settled it.
+
+## The bias
+
+Sonic picks the safest answer: the smallest scope, no release, no seed rows unless asked. A
+demo is seen once, to convince someone, so Studio picks the most convincing answer that the
+platform can prove and the budget allows. When nothing settles a question, choose the option
+the audience will notice, not the one that changes the least.
+
+## Scope: nothing beyond the beats
+
+- The chosen storyline's beats are the scope. Every object, field, automation, page, region
+  and AI agent in the brief is named by a beat. The Judge cuts what no beat uses, however
+  good, and the Scout's capability table carries a `beat` column so the cut is visible.
+- No "while we're here": no admin page, no settings page, no second role, no export, no extra
+  status value, no reporting page, unless a beat shows it.
+- Nebula's own page defaults stay (loading, empty and error states; inline field errors; the
+  disabled submit while saving; the success toast; the failure banner), because a page
+  without them looks unfinished. They are not features and are never counted as extras.
+- A field exists because a beat shows it or a rule needs it. A seed column no beat shows is
+  cut. An automation branch no beat exercises is cut.
+
+## Demo intent: what the client wants out of the demo
+
+Settled first, by the Stand-in, as ledger row `demo.intent`, from the request, the profile's
+`intent` line and the Slack notes' intent signals, with the sentences that show it quoted.
+Three values:
+
+- **`use-case`**: the audience wants to see their problem solved. The storyline is the
+  product and the platform stays out of sight. Spend the budget on the story row, the data,
+  the pages' look and the lean-forward moment. No hood beats.
+- **`platform`**: the audience wants to see how it is configured, how hard it is to change,
+  whether their own team could build it. The use case is a vehicle. Keep it small and plain so
+  the configuration is the show: fewer entities, standard blocks over custom CSS, readable
+  names and a one-line description on every automation node, object field, data source and
+  block, one clear automation canvas, one clear object schema. The script carries 2 to 4 hood
+  beats that open the automation canvas, the object, a page in the builder, the agent's
+  configuration, and say what each shows. Visual flourish that makes the configuration look
+  complex is cut.
+- **`both`**: a use-case storyline with one or two hood beats where the audience is most likely
+  to ask "how did you do that", usually right after the lean-forward moment.
+
+When nothing settles it, answer `both` and mark it `Check this`: it serves either audience and
+the person can drop the hood beats from the script.
+
+| | `use-case` | `platform` | `both` |
+|---|---|---|---|
+| entities | up to the budget | the fewest that carry the use case | up to the budget |
+| look | the full client brand, pushed as `use demo` allows | the client's colours and font through the theme only; standard blocks; little custom CSS | the brand on the story pages; the pages a hood beat opens stay plain |
+| names and descriptions | the client's terms | the client's terms, plus a one-line description on every node, field, source and block | the same as `platform` on what a hood beat opens |
+| hood beats | none | 2 to 4 | 1 or 2 |
+| seed rows | 15 to 20 | 8 to 12 | 15 to 20 |
+| lean-forward moment | the business outcome | the configuration behind the outcome | the outcome, then its configuration |
+
+## Storyline
+
+- One storyline per demo, chosen by the Judge from three, matching `demo.intent`. It has 5 to 7 beats; each beat is
+  "the presenter does X, the screen shows Y", and the last beat is the lean-forward moment
+  the profile's `show off` line names.
+- One failure path on purpose: one beat shows a rule refusing something (a rejected approval,
+  a duplicate caught, an amount over a limit), because a demo that only succeeds looks staged.
+- The story row: one seeded record every beat revolves around, named in the client's
+  vocabulary, with values chosen so the beats work (the amount that crosses the threshold,
+  the date that is due).
+- Scope follows the profile's budget line; the defaults are 4 pages, 3 objects, 3
+  automations, 1 AI agent. The Judge cuts to it; nothing is asked.
+
+## Names and words
+
+- The app, its pages and its objects use the client's own terms from the profile's `voice`
+  line and the Designer's `brand.md` (trucks, not vehicles; depots, not sites).
+- The app's name is the client's name plus what it does ("Acme Fleet Desk"), never a
+  product name of ours.
+- Object ids follow Nebula's rule (`OBJ_<snake_case_slug>` or the solution's existing style).
+
+## Data
+
+- Every object the storyline shows gets a `record · seed` line: 15 to 20 rows, fictional,
+  internally consistent (dates in the last 90 days, totals that add up), including the story
+  row. Nebula's cap of 20 rows per object holds; more belongs in an automation.
+- No real people, companies, addresses or identifiers. Names are invented; places are real
+  cities with invented streets.
+- Picklists carry the codes and labels the beats need, with the first value as the default.
+
+## Pages and look
+
+- The app look's `use` is `demo`: the bold thing may be large and one entrance on first load
+  is allowed. Nothing else on the page moves on its own.
+- The look comes from the client's brand through `brand-to-look.md`, never from a default
+  palette. The `brand` label records what came from the site.
+- Every page has a `job` line and a `design` block from Nebula's `app-page-planner`. The
+  page carrying the bold thing is the one the storyline's lean-forward beat lands on.
+- Every list has loading, empty and error states; every form has inline errors, a disabled
+  submit while saving, a success toast naming the record, and a failure banner. These are
+  built because Nebula's defaults build them; the storyline shows one of them.
+- The logo goes at the top of every page's header through the app's custom code, from the
+  URL `brand.md` recorded. A Rules line in the brief says so.
+- A new app's home page is at `/home` and set as the default page; navigation gets one entry
+  per top-level page.
+
+## Automations and AI agents
+
+- Every automation a page calls is deployed as part of the plan.
+- An AI agent, when the storyline has one, is bound to the automations and objects the beats
+  use, and tested with `send_test_messages` on the three questions the script will ask; the
+  answers go in the runbook.
+- No connection is created: Nebula reads connections and never creates one. A storyline that
+  needs a connection the tenant does not have is cut by the Judge or made a `manual` task
+  listed in the runbook, never asked about.
+
+## Release and access
+
+- `## Ready when` names the publish of the app and every deploy. Studio never leaves a demo
+  unpublished.
+- Visibility is `PRIVATE` unless the profile's `release` line says shareable, in which case
+  `PUBLIC`.
+- Deleting anything is never proposed. If an existing entity is in the way, the storyline
+  works around it or renames the new one with a domain qualifier.
+
+## When nothing settles a question
+
+Choose the option the audience will notice and the platform can prove, log the row with its
+source, and put it first under `## Assumptions` with `Check this`. Never leave a row open past
+the round cap; the Judge rules.

@@ -1,0 +1,14 @@
+{
+  "name": "demo-studio",
+  "owner": {
+    "name": "Gourav Mahunta"
+  },
+  "description": "Demo Studio: client-branded UnifyApps demo assets built on Nebula with no clarifying questions.",
+  "plugins": [
+    {
+      "name": "demo-studio",
+      "source": "./",
+      "description": "Builds client-branded UnifyApps demo assets from one request. A team of agents settles every clarifying question itself, Nebula builds the result, and a rehearsal agent walks the demo in a browser."
+    }
+  ]
+}

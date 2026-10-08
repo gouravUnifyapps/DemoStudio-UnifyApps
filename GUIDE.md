@@ -1,0 +1,76 @@
+# Demo Studio: Quick Guide
+
+Demo Studio builds a ready-to-present UnifyApps demo from one sentence. You type what you want, and it does the rest.
+
+## Before you start
+
+You need two things, both already set up on your Mac:
+
+- The **Nebula** plugin, which does the actual building.
+- The **Demo Studio** plugin, version 0.2.0.
+
+Optional but useful: Slack connected, so it can read what the client said.
+
+## Step by step
+
+**1. Open a new Claude Code session in an empty folder.**
+Use the desktop app's Code tab or the terminal. One folder holds one demo.
+
+**2. (Optional, once per client) Save a client profile.**
+This tells Demo Studio about the client so it never has to ask.
+
+```
+/demo-studio:profile Acme Logistics · site acmelogistics.com · audience COO, 20 minutes · tenant orbit.uat.unifyapps.com
+```
+
+Skip this and Demo Studio drafts a profile for you.
+
+**3. Ask for the demo.**
+
+```
+/demo-studio:build Build a demo for Acme Logistics: fleet maintenance with approvals and an AI assistant, for their COO.
+```
+
+**4. Sign in, if asked.**
+The only thing it may ask you is to sign in to the tenant. Pick "Open browser" and sign in.
+
+**5. Wait.**
+You will see short progress lines, such as "Round 1: picked a storyline" and "Task 3 of 14 done". Behind the scenes it:
+
+- reads Slack for what the client asked for,
+- reads the client's website for colours and fonts,
+- decides if the client wants to see the use case, how the platform is set up, or both,
+- picks one storyline and cuts anything the demo does not use,
+- builds it with Nebula,
+- clicks through the finished demo in a browser and fixes what looks wrong.
+
+**6. Open the runbook.**
+When it finishes, it gives you a link to `<Client> Demo Runbook.md`. That is your guide for the day.
+
+## What you get at the end
+
+| What | Where |
+|---|---|
+| A working, published demo app in the client's colours and fonts | On your UnifyApps tenant, with a live link |
+| The data, automations and AI assistant behind it, with sample records | On your tenant, inside the solution |
+| A **demo script**: what to say and click at each step, with a screenshot of each | In the runbook |
+| Links to every page, object and automation | In the runbook |
+| What the AI assistant answered in rehearsal | In the runbook |
+| A list of **decisions it made for you**, and how to change them next time | In the runbook |
+| A saved client profile, so the next demo for this client is faster | `studio/profiles/<client>.md` |
+
+## When it will stop and ask you
+
+Only for these four things:
+
+1. Signing in, when your login has expired.
+2. Deleting anything.
+3. A password or connection the tenant does not have.
+4. A demo too big for the budget, when it cannot cut it down.
+
+## Tips
+
+- **Say who is watching and for how long.** It shapes the whole demo.
+- **Name the client's website.** That is where the look comes from.
+- **Check "Decisions taken for you" in the runbook.** Add those answers to the client profile and the next demo will be closer to what you want.
+- **Want a change after it is done?** Just type it, for example "make the approve button bigger". It builds the fix without asking anything.
