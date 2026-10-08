@@ -23,6 +23,7 @@ request.
 - sources: <slack gmail calendar, any subset, or none> · <what to look for, when known>
 - slack: <channels to read, such as #acme-deal #sales-emea, or "find them">
 - frontend: <nebula | code | both> · <nebula builds the Config app; code builds it in the Code Builder from the Text2Code prompt; both does both>
+- innovate: <nebula | all | off> · <nebula admits platform-feature ideas Nebula can build; all admits ideas a browser agent could build from the operator skills; off skips the Innovator>
 - avoid: <what must not appear or happen>
 - tenant: <host> · solution: <name> (create if missing)
 - release: <publish and deploy without asking | leave unpublished> · visibility <PRIVATE | shareable>
@@ -44,6 +45,7 @@ request.
 | sources | `slack gmail calendar`: whichever is connected is read; a missing one is noted and skipped |
 | slack | `find them`: the Researcher searches channels by the client's name, domain and the demo words |
 | frontend | `nebula`; the Text2Code prompt is written in every case |
+| innovate | `nebula`: the Innovator runs, and the Judge admits at most two ideas Nebula can build |
 | avoid | deletes · anything needing a connection the tenant lacks · more pages than the budget |
 | tenant | the host of a builder link in the request; else the folder's Nebula solution; else the most recent tenant Nebula's `state next` lists |
 | solution | `<Client> Demo` |

@@ -22,7 +22,8 @@ Capture, at 1440 wide, the home page and one product or service page. Record in 
    plain. Take hex values from the page's computed styles (the browser's evaluate tool on
    a button and the body), not by eye.
 2. **Type.** Serif or sans; geometric, grotesque or humanist; display habits (caps, tracking,
-   weight); the font names the CSS declares.
+   weight); the font names the CSS declares, and how the page loads them (the Google Fonts
+   link or the `@font-face` URLs), so a code app can load the same fonts.
 3. **Logo.** Its URL and whether it reads on light and on dark.
 4. **Imagery and tone.** What the photos show; three words for how the site speaks.
 5. **The subject's own world.** Ten nouns that belong to this client and to nothing else,
@@ -35,7 +36,14 @@ Save the two shots beside `brand.md`. If the site cannot be reached, say so in `
 the direction from the industry and the profile's `brand` line, and mark the look
 `approximated: site unreachable`.
 
-## Phase `look`: write the line
+## Phase `look`: write the line, and the code design brief
+
+Phase `look` has two outputs from the same `brand.md`. The Nebula `app look` line below is for
+Config pages and lives inside Nebula's limits: 13 colour roles and one of 12 fonts. The code
+design brief ([code-design-brief.md](code-design-brief.md)) is for the Text2Code prompt and has
+no such limits: the client's real fonts, the full palette, the layout language of their site,
+every component specified, motion. Write both; the brief is where a demo UI stops looking
+like every other admin page.
 
 Answer all 17 questions of `app-look.md` § Decide it, in order, from `brand.md`, the chosen
 storyline and the profile. The mapping rules:

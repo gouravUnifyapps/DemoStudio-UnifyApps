@@ -26,10 +26,10 @@ show off approvals by amount and an AI assistant · tenant orbit.uat.unifyapps.c
 | Act | Who | What |
 |---|---|---|
 | 0 Setup | the skill | Nebula setup from the profile: tenant, sign-in, solution, Sonic mode. Sign-in is the only possible stop. |
-| 1 Discovery | Scout, Researcher, Ideator, Designer, then Stand-in | the tenant and platform map; what the client said in Slack, email and the calendar, from channels, threads and events the Researcher finds itself; three storylines; the client's brand from its site; the demo intent (use case, platform configuration, or both) settled from the client's own sentences; every open decision answered for you |
+| 1 Discovery | Scout, Researcher, Ideator, Designer, then Innovator, then Stand-in | the tenant and platform map; what the client said in Slack, email and the calendar, from channels, threads and events the Researcher finds itself; three storylines; the client's brand from its site; three to six ideas for using platform features (agents, evaluations, context graph, search, campaigns) as demo beats; the demo intent (use case, platform configuration, or both) settled from the client's own sentences; every open decision answered for you |
 | 2 Convergence | Judge, Designer, Scout, Stand-in | one storyline chosen to match the intent and cut to budget, with everything no beat uses removed; the app look and every page designed; every line checked against what the platform can build, with any platform question asked of Nebula rather than guessed; the Nebula brief filed |
 | 3 Build | Nebula | the plan, the builders, the page reviewer, read-back proof, publish and deploy |
-| 3b Code app | Coder | a Text2Code prompt written from the built object, automation and agent ids; with `frontend: code` or `both`, the app built in the Code Builder from that prompt, iterated in a browser until the beats pass, and published |
+| 3b Code app | Coder, Critic | a Text2Code prompt written from the built ids and the code design brief (the client's real fonts, full palette, layout language, every component, motion); with `frontend: code` or `both`, the app built in the Code Builder from that prompt, iterated until the beats pass, then reviewed by the Critic against the brief and the brand, two rounds, and published |
 | 4 Rehearsal | Rehearsal | every beat of the demo walked in a browser with a shot; fixes filed as Nebula later tasks; two rounds at most |
 | 4b Explainer | Scribe | a plain-words document, Markdown and HTML, with one picture of the whole thing, an entity diagram, a step diagram per automation and one record's journey, written from what actually exists |
 | 5 Handoff | the skill | a runbook with the script, shots, links, the look, the explainer, the prompt, and every decision taken for you with the profile line that would have avoided it |
@@ -85,12 +85,13 @@ the Judge cannot meet. Nothing else.
 demo-studio/
   .claude-plugin/plugin.json
   skills/build/SKILL.md            the five acts
-  skills/build/references/         nebula-bridge, ask-nebula, context-research, explainer,
-                                   text2code, demo-defaults, ledger, storyline, demo-script,
-                                   runbook and profile templates, brand-to-look
+  skills/build/references/         nebula-bridge, ask-nebula, context-research, innovation,
+                                   explainer, text2code, code-design-brief, brand-to-look,
+                                   demo-defaults, ledger, storyline, demo-script, runbook
+                                   and profile templates
   skills/profile/SKILL.md          write or edit a client profile
-  agents/                          stand-in, scout, researcher, ideator, designer, judge,
-                                   rehearsal, scribe, coder
+  agents/                          stand-in, scout, researcher, ideator, innovator, designer,
+                                   judge, critic, rehearsal, scribe, coder
   scripts/explainer-html.mjs       turns the explainer's Markdown into one HTML page
   scripts/nebula-root.mjs          finds the installed Nebula and checks its version
 ```

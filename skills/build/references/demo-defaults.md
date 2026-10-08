@@ -114,6 +114,26 @@ the person can drop the hood beats from the script.
   needs a connection the tenant does not have is cut by the Judge or made a `manual` task
   listed in the runbook, never asked about.
 
+## Innovation: the platform's features, used on purpose
+
+The Innovator proposes three to six platform-feature ideas (innovation.md), each a beat the
+presenter can show in under two minutes. The Judge admits at most two, each replacing or
+sharpening a beat, within the budget and the profile's `innovate` line: `nebula` (default)
+admits only what Nebula can build (agents, evaluations, teams, guardrails, audit trails,
+mobile); `all` admits ideas a browser agent could build from the operator skills (context
+graph, ontology, search, campaigns, pipelines); `off` skips the Innovator. An admitted idea
+that becomes the lean-forward moment is the goal; one that adds a page is cut. Ideas not
+admitted go in the runbook under "Ideas for the next demo".
+
+## Design quality for code apps
+
+A code app is held to the code design brief (code-design-brief.md), not to Nebula's look
+line: the client's real fonts, the full palette with roles, the layout language of the
+client's site, every component specified, motion, the bold moment, and a refusal list. The
+Critic reviews the preview against it, two rounds at most, and a brief line not met is a
+change sent to the Code Builder. A page where the brand appears only in the logo is a
+failure, whatever else works.
+
 ## Frontend: which builder makes the app
 
 The profile's `frontend` line (text2code.md § The frontend line): `nebula` (default) builds the

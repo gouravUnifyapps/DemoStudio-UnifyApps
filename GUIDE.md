@@ -38,12 +38,13 @@ The only thing it may ask you is to sign in to the tenant. Pick "Open browser" a
 You will see short progress lines, such as "Round 1: picked a storyline" and "Task 3 of 14 done". Behind the scenes it:
 
 - reads Slack, your email and your calendar for what the client asked for and who is coming,
-- reads the client's website for colours and fonts,
+- reads the client's website for colours, fonts, logo and layout, and writes a design brief from them,
+- proposes ways to use platform features (agents, evaluations, context graph) in the demo,
 - decides if the client wants to see the use case, how the platform is set up, or both,
 - picks one storyline and cuts anything the demo does not use,
 - builds it with Nebula,
 - clicks through the finished demo in a browser and fixes what looks wrong,
-- writes a prompt for the Code Builder, and builds the app there too if you asked for it,
+- writes a prompt for the Code Builder, builds the app there if you asked for it, and has a critic review the look against the client's brand,
 - writes an explainer with diagrams so anyone can understand what was built.
 
 **6. Open the runbook.**

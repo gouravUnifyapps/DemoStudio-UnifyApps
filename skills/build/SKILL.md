@@ -4,7 +4,7 @@ description: >
   This skill should be used when the user asks to "build a demo", "make a demo for <client>",
   "prepare a showcase app", "demo asset", "pitch app for <client>", or types /demo-studio:build
   followed by a request. It runs a team of agents (Stand-in, Scout, Researcher, Ideator,
-  Designer, Judge, Rehearsal, Scribe, Coder) that pulls client context from Slack, Gmail and
+  Innovator, Designer, Judge, Critic, Rehearsal, Scribe, Coder) that pulls client context from Slack, Gmail and
   Calendar, decides whether the demo is about the use case, the platform's configuration or
   both, settles every open decision itself, asks Nebula rather than guessing about the
   platform, builds nothing a beat of the demo does not use, builds through the installed Nebula
@@ -120,12 +120,20 @@ moderator from memory.
 When all four report, open `$STUDIO/ledger.md` from
 [references/ledger-template.md](references/ledger-template.md): one row per decision key from
 every `open rows` list, deduplicated by meaning, each with its candidates and who raised it.
+
+Unless the profile's `innovate` line is `off`, start `demo-studio:innovator` →
+`innovator-1.md`: the request, the profile, `storylines.md`, `scout.md`, `context-notes.md`,
+[references/innovation.md](references/innovation.md). It writes `$STUDIO/ideas.md`: three to
+six platform-feature ideas (agents, evaluations, context graph, search, campaigns and the
+rest), each a beat tied to a storyline, with a feasibility guess the Scout confirms in round 2.
+Merge its open rows into the ledger.
+
 Then start `demo-studio:stand-in` → `stand-in-1.md`: the profile, the request, the ledger,
-`storylines.md`, `scout.md`, `context-notes.md`, Nebula memory (`memory get`), and the rule that
+`storylines.md`, `ideas.md`, `scout.md`, `context-notes.md`, Nebula memory (`memory get`), and the rule that
 it settles `demo.intent` first (use case, platform configuration, or both) from the request,
 the profile and the context notes with the sentences that show it quoted, then answers every
 other row in one specific line tagged `STAND-IN` (or `SLACK` when a message settled it),
-scores each storyline for fit 1 to 5 with a reason, refuses any answer that adds an entity no
+scores each storyline and each idea for the client's interest 1 to 5 with a reason, refuses any answer that adds an entity no
 beat uses, and marks a row `user-only` only for a credential or a delete. Merge its answers
 into the ledger.
 
@@ -135,11 +143,13 @@ Run rounds against the ledger until the test passes or three rounds are done. Sa
 per round: `Round <n>: <what was decided>, <k> rows open.`
 
 **Round 1 ruling.** Start `demo-studio:judge` → `judge-1.md`: the ledger with the settled
-`demo.intent`, the storylines with fit and Scout's feasibility and size, the profile's budget
-line. It writes `$STUDIO/rulings.md`: the chosen storyline (or a merge of two) that matches the
-intent, what it cut to fit the budget and why, in three lines, every entity, page or beat no
-beat of that storyline uses (cut, listed), and a ruling on any row both Scout and Stand-in
-left open. Merge into the ledger.
+`demo.intent`, the storylines with fit and Scout's feasibility and size, `ideas.md` with the
+Stand-in's interest scores, the profile's budget and `innovate` lines. It writes
+`$STUDIO/rulings.md`: the chosen storyline (or a merge of two) that matches the intent, the
+ideas it admits (at most two, each replacing or sharpening a beat, within the budget and the
+`innovate` line) and why the rest wait for the next demo, what it cut to fit the budget and
+why, in three lines, every entity, page or beat no beat of that storyline uses (cut, listed),
+and a ruling on any row both Scout and Stand-in left open. Merge into the ledger.
 
 **Round 2.** In ONE message start:
 
@@ -148,23 +158,27 @@ left open. Merge into the ledger.
   brand-to-look.md, and the Nebula files the bridge names for the look (`app-look.md`,
   `default-looks.md`, `app-page-planner/SKILL.md`, `kit.md`). It writes `$STUDIO/design.md`:
   the `app look` line, then one `job` line and one `design` block per page, in Nebula's brief
-  format, checked with Nebula's look script.
+  format, checked with Nebula's look script; and `$STUDIO/code-design.md`, the code design
+  brief for the Text2Code prompt
+  ([references/code-design-brief.md](references/code-design-brief.md)): the client's real
+  fonts, the full palette, the layout language of their site, every component specified,
+  motion, the bold moment and the `not` list, every line a value the Critic can check.
 - Scout, by SendMessage: the chosen storyline's entities and beats, and every `platform
   question` row still open. It appends to `scout.md` a table with one row per intended
   `## Changes` line: the beat that uses it, the builder, the tool that makes it, the read that
   proves it, and `ok` or `no tool` with the nearest thing the platform can do. A line no beat
   uses is flagged for the Judge to cut. Each platform question is answered through
-  ask-nebula.md and logged `NEBULA`.
+  ask-nebula.md and logged `NEBULA`, and each admitted idea's `Built by` is confirmed or
+  corrected.
 
 New rows either exposes go to the Stand-in by SendMessage. Merge everything into the ledger.
 
 **Round 3, only if rows are still open.** A fresh Judge rules on every remaining row from
 the ledger alone. Nothing stays open after this round.
 
-**The convergence test.** A round converges when, at its end, every ledger row has exactly
-one surviving candidate, no row carries an open objection from Scout (feasibility) or
-Stand-in (fit), and the round added no new open row. Storylines converge when the Judge has
-chosen one and both Scout's `no tool` rows for it are empty or replaced.
+**The convergence test** is in [references/ledger-template.md](references/ledger-template.md):
+every row settled, no open objection, no new open row, and the storyline chosen with no
+unresolved `no tool` line.
 
 **The brief.** Fill Nebula's brief template (`NEBULA/skills/sonic-scoping/references/brief-template.md`)
 from the ledger, `design.md`, `scout.md` and demo-defaults.md: only lines a beat uses; the
@@ -215,8 +229,14 @@ storyline, `design.md`, the ledger, the entity table, the tenant host, and
 `<Client> Text2Code Prompt.md` in the working folder, from reads of the built ids and their
 contracts. With `frontend: code` or `both` it then drives the Code Builder in a browser as
 text2code.md says: paste, review and correct the plan, approve, answer the builder's questions
-itself, iterate one change a turn for at most 6 turns, publish, and report
-`$STUDIO/code-app.md`. With `frontend: code` the brief of Act 2 carries no page, job, design,
+itself, iterate one change a turn for at most 6 turns until the beats pass, and report
+`READY FOR REVIEW`. Keep its agent id. Then start `demo-studio:critic` → `critic-1.md`: the
+preview address and page list from `$STUDIO/code-app.md`, `code-design.md`, `brand.md`, the
+beats. Send its `send` lines to the Coder by SendMessage; it applies each as one turn, at
+most 4 a round, and replies `REVIEWED`; a fresh Critic with the earlier findings and scores
+judges again. Two rounds at most; then tell the Coder the review is done, and it publishes
+and finishes `$STUDIO/code-app.md`. A Critic `design question` goes to a fresh Designer with
+`phase: fix` before the next round. With `frontend: code` the brief of Act 2 carries no page, job, design,
 app look or publish lines, and Act 4 is the Coder's own walk of the code app. Every browser
 step in this plugin takes the desktop app's built-in browser first, where the person is
 usually already signed in to the tenant, then Claude in Chrome, then Nebula's own browser. A

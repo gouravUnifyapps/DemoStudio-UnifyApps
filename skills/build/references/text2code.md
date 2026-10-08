@@ -41,11 +41,11 @@ For each page of the storyline, in order:
 - Main action: <what most visits end with>, which calls <automation name> (`<workflowId>`)
 - States: loading · empty ("No <items> yet.") · error ("Couldn't load <items>." with Retry)
 
-## Look
-- Colours by role: page <#>, surface <#> / <#alt>, text <#> / <#secondary>, primary <#> / <#hover> / <#pressed>, borders <#> / <#light>, success <#>, warning <#>, error <#>
-- Font: <font> · sizes <…> · weights <…> · radius <small/medium/large> · <compact|comfortable> · gaps <inside/between>
-- Logo: <URL> at the top left of every page
-- <The one bold thing and where it lives> · motion: <the one moment, or none>
+## Design brief
+<The whole of code-design.md, pasted, not summarised: the direction, the palette with roles and hex values, the fonts to load and the type scale, the layout language, every component specified, motion, depth and texture, the bold moment, dark or light, logo use, and the `not` list. A line the Code Builder does not see is a default it will reach for: a grey page, a white table, the system font.>
+
+## Quality bar
+<The refusal list from code-design-brief.md § The quality bar, pasted: a page where the brand appears only in the logo; the system font when the brief names another; an unstyled table; pure black text; a heading under 2x the body; no hover, transition, entrance, skeleton or empty state; any screen that would pass as another company's app with the logo swapped. End with: "Treat each of these as a bug.">
 
 ## Data: use these objects, create none
 For each object:
@@ -69,7 +69,9 @@ For each automation:
 <One line per storyline beat: "the presenter does X and sees Y".>
 ```
 
-Keep it under two screens. A line the Code Builder does not need is a line it may misread.
+Keep the data, logic, rules and done-when sections tight: a line the Code Builder does not
+need is a line it may misread. The design brief is the one section that runs long, because
+every line of it is a value the Critic checks on screen.
 
 ## Driving the Code Builder (frontend `code` or `both`)
 
@@ -107,6 +109,17 @@ one line and wait; never type a password.
    ("the Rejected badge should use the error colour, not grey"), wait for the turn, re-read.
    At most 6 turns. A fix that makes another beat worse is undone with the next turn. Design
    mode is for a colour, size or spacing that is easier to click than describe.
+7b. **Design review, with fresh eyes.** When the beats pass, the Coder writes `code-app.md`
+   with the preview address and the page list and ends its reply with `READY FOR REVIEW`.
+   The moderator starts `demo-studio:critic` with that address, `code-design.md`, `brand.md`
+   and the beats; it screenshots each page, reads the fonts and colours off the page, scores
+   ten qualities (Nebula's seven plus brand, distinctiveness and motion) and returns `send`
+   lines. The moderator passes them to the Coder by message; the Coder sends each as one
+   turn, at most 4 a round, then reports again, and a fresh Critic judges with the earlier
+   findings and scores. Two rounds at most. A quality that got worse is undone with the next
+   turn; what is still `fix` after round two goes in the report as unverified. A finding
+   with no brief line behind it is a `design question` for the Designer, not a change the
+   Coder invents.
 8. **Publish** from the Preview tab: tag `demo-v1`, version notes "Demo Studio build for
    <client>", and copy the Application URL. Publish greyed out as Up to date means nothing
    changed since the last publish; greyed out for a branch means switch to the default

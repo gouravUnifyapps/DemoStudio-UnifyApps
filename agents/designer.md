@@ -73,6 +73,13 @@ the Skill tool for the direction and how far to push a demo. Then follow brand-t
 4. Write `$STUDIO/design.md` in the brief's own line format: the `app look` line, the printed
    contrast numbers under it, then for each page `page · create`, `job`, `design`, and one
    `## Rules` line for the logo in every page header from the URL in `brand.md`.
+5. Write `$STUDIO/code-design.md`, the code design brief, as
+   `$STUDIO_ROOT/skills/build/references/code-design-brief.md` says. Same brand, none of
+   Nebula's limits: the client's real fonts and how to load them, 12 to 16 palette values
+   with roles, the layout language of the client's site, every component specified, motion,
+   depth and texture, the bold moment, dark or light, logo use, and the `not` list. Every
+   line is a value the Critic can check on screen. This is what the Text2Code prompt
+   carries; a thin brief here is the grey default the person has already seen once.
 
 ## Phase `fix`
 
