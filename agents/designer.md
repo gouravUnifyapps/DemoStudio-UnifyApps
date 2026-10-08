@@ -53,7 +53,7 @@ Read, from `NEBULA`: `skills/app-craft/references/app-look.md` § Decide it,
 the Skill tool for the direction and how far to push a demo. Then follow brand-to-look.md
 § Phase look:
 
-1. Answer the 17 questions in order from `brand.md`, `slack-notes.md` (brand hints and
+1. Answer the 17 questions in order from `brand.md`, `context-notes.md` (brand hints and
    vocabulary, when it exists), the chosen storyline and the profile, with `use demo`, the
    font mapped by the table, the colours from the site, `bold` on the page the lean-forward
    beat lands on, and `not` naming the default you avoided. The settled `demo.intent` sets

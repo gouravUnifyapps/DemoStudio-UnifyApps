@@ -13,6 +13,9 @@ Built <date> on <host> · solution <name> · Nebula <version> · Demo Studio <ve
 - Live: <published URL>
 - Builder: <app link from the entity table>
 - Sign in as: <the presenter's own tenant account; test user if one was made>
+- Explainer: `<Client> Demo Explainer.html` (what each object, automation, agent and page does, with diagrams)
+- Text2Code prompt: `<Client> Text2Code Prompt.md`
+- Code app (when built): <published URL> · builder <link> · <n> of <n> beats pass
 
 ## The story in one breath
 <Two lines: who the presenter is, what goes wrong, what the audience sees fixed.>

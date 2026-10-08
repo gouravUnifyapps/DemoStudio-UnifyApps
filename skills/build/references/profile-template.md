@@ -20,7 +20,9 @@ request.
 - presenter: <who> · tells the story from <whose seat>
 - show off: <the two or three things the demo must make obvious>
 - intent: <use-case | platform | both | find out> · <why, in the client's words when known>
-- slack: <channels to read, such as #acme-deal #sales-emea, or "find them"> · <none, to skip Slack>
+- sources: <slack gmail calendar, any subset, or none> · <what to look for, when known>
+- slack: <channels to read, such as #acme-deal #sales-emea, or "find them">
+- frontend: <nebula | code | both> · <nebula builds the Config app; code builds it in the Code Builder from the Text2Code prompt; both does both>
 - avoid: <what must not appear or happen>
 - tenant: <host> · solution: <name> (create if missing)
 - release: <publish and deploy without asking | leave unpublished> · visibility <PRIVATE | shareable>
@@ -39,7 +41,9 @@ request.
 | presenter | the person who asked · from the seat of the client's team lead |
 | show off | the request's own nouns; else approvals that route by a rule, an AI assistant over live data, clean tables |
 | intent | `find out`: the Researcher's Slack signals and the request decide; when neither does, `both`, marked `Check this` |
+| sources | `slack gmail calendar`: whichever is connected is read; a missing one is noted and skipped |
 | slack | `find them`: the Researcher searches channels by the client's name, domain and the demo words |
+| frontend | `nebula`; the Text2Code prompt is written in every case |
 | avoid | deletes · anything needing a connection the tenant lacks · more pages than the budget |
 | tenant | the host of a builder link in the request; else the folder's Nebula solution; else the most recent tenant Nebula's `state next` lists |
 | solution | `<Client> Demo` |

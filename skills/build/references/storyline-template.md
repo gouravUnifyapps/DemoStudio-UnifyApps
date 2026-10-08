@@ -11,7 +11,7 @@ scores feasibility and size; the Judge picks or merges.
 ```markdown
 ## <Title, in the client's words>  · <safe | bold | unexpected>
 
-- Intent: <use-case | platform | both> · <what the audience wants out of the demo, in their words from the Slack notes or the request>
+- Intent: <use-case | platform | both> · <what the audience wants out of the demo, in their words from the context notes or the request>
 - Audience and moment: <who watches> · leans forward when <the one thing they remember>
 - Presenter's seat: <whose role the presenter plays, where they are>
 - Story row: <the one record the beats revolve around, with the values that make the beats work>

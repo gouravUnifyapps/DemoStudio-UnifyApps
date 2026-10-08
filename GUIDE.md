@@ -37,12 +37,14 @@ The only thing it may ask you is to sign in to the tenant. Pick "Open browser" a
 **5. Wait.**
 You will see short progress lines, such as "Round 1: picked a storyline" and "Task 3 of 14 done". Behind the scenes it:
 
-- reads Slack for what the client asked for,
+- reads Slack, your email and your calendar for what the client asked for and who is coming,
 - reads the client's website for colours and fonts,
 - decides if the client wants to see the use case, how the platform is set up, or both,
 - picks one storyline and cuts anything the demo does not use,
 - builds it with Nebula,
-- clicks through the finished demo in a browser and fixes what looks wrong.
+- clicks through the finished demo in a browser and fixes what looks wrong,
+- writes a prompt for the Code Builder, and builds the app there too if you asked for it,
+- writes an explainer with diagrams so anyone can understand what was built.
 
 **6. Open the runbook.**
 When it finishes, it gives you a link to `<Client> Demo Runbook.md`. That is your guide for the day.
@@ -57,6 +59,9 @@ When it finishes, it gives you a link to `<Client> Demo Runbook.md`. That is you
 | Links to every page, object and automation | In the runbook |
 | What the AI assistant answered in rehearsal | In the runbook |
 | A list of **decisions it made for you**, and how to change them next time | In the runbook |
+| An **explainer** with flowcharts: what each object, automation, agent and page does and how data flows | `<Client> Demo Explainer.html` (and `.md`) |
+| A **Text2Code prompt** with the real ids, to build the same demo in the Code Builder | `<Client> Text2Code Prompt.md` |
+| The **code app** itself, when your profile says `frontend: code` or `both` | On your tenant, with a live link in the runbook |
 | A saved client profile, so the next demo for this client is faster | `studio/profiles/<client>.md` |
 
 ## When it will stop and ask you

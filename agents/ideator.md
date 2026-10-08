@@ -26,8 +26,8 @@ tools: ["Read", "Write"]
 ---
 
 You write the story a demo tells. Your message is a file the moderator tells you to read: the
-request, the client profile, the storyline template, the demo defaults, the Slack notes
-(`slack-notes.md`, with the proposed or settled `demo.intent`) when they exist, and the
+request, the client profile, the storyline template, the demo defaults, the context notes
+(`context-notes.md`, with the proposed or settled `demo.intent`) when they exist, and the
 Scout's tenant map when it exists.
 
 ## What you write

@@ -26,11 +26,13 @@ show off approvals by amount and an AI assistant · tenant orbit.uat.unifyapps.c
 | Act | Who | What |
 |---|---|---|
 | 0 Setup | the skill | Nebula setup from the profile: tenant, sign-in, solution, Sonic mode. Sign-in is the only possible stop. |
-| 1 Discovery | Scout, Researcher, Ideator, Designer, then Stand-in | the tenant and platform map; what the client said in Slack, from channels the Researcher finds itself; three storylines; the client's brand from its site; the demo intent (use case, platform configuration, or both) settled from the client's own sentences; every open decision answered for you |
+| 1 Discovery | Scout, Researcher, Ideator, Designer, then Stand-in | the tenant and platform map; what the client said in Slack, email and the calendar, from channels, threads and events the Researcher finds itself; three storylines; the client's brand from its site; the demo intent (use case, platform configuration, or both) settled from the client's own sentences; every open decision answered for you |
 | 2 Convergence | Judge, Designer, Scout, Stand-in | one storyline chosen to match the intent and cut to budget, with everything no beat uses removed; the app look and every page designed; every line checked against what the platform can build, with any platform question asked of Nebula rather than guessed; the Nebula brief filed |
 | 3 Build | Nebula | the plan, the builders, the page reviewer, read-back proof, publish and deploy |
+| 3b Code app | Coder | a Text2Code prompt written from the built object, automation and agent ids; with `frontend: code` or `both`, the app built in the Code Builder from that prompt, iterated in a browser until the beats pass, and published |
 | 4 Rehearsal | Rehearsal | every beat of the demo walked in a browser with a shot; fixes filed as Nebula later tasks; two rounds at most |
-| 5 Handoff | the skill | a runbook with the script, shots, links, the look, and every decision taken for you with the profile line that would have avoided it |
+| 4b Explainer | Scribe | a plain-words document, Markdown and HTML, with one picture of the whole thing, an entity diagram, a step diagram per automation and one record's journey, written from what actually exists |
+| 5 Handoff | the skill | a runbook with the script, shots, links, the look, the explainer, the prompt, and every decision taken for you with the profile line that would have avoided it |
 
 ## Three rules worth knowing
 
@@ -38,16 +40,28 @@ show off approvals by amount and an AI assistant · tenant orbit.uat.unifyapps.c
   answered from Nebula's knowledge skills, the platform's knowledge sheets or a tenant read
   (`skills/build/references/ask-nebula.md`). The platform fails silently, so a guess is worse
   than no answer.
-- **It pulls context from Slack.** The Researcher searches channels by the client's name,
-  domain and the demo words, ranks them, reads the top five, and writes what the client and
-  the team actually said. No personal data leaves Slack; with no Slack connected the build
-  simply goes on.
+- **It pulls context from Slack, Gmail and Calendar.** The Researcher searches channels,
+  threads and events by the client's name, domain and the demo words, reads the relevant
+  ones, and writes what the client and the team actually said, plus the demo slot's length
+  and setting. No personal data leaves the sources; a source that is not connected is skipped.
 - **It builds nothing a beat does not use, and it decides the demo's intent first.** Is the
   audience there for the use case, for a look at how it is configured on the platform, or
   both? The Stand-in settles that from the request, the profile and Slack before any
   storyline is chosen; a `platform` demo keeps the use case small and the configuration
   legible, with hood beats that open the builder; a `use-case` demo keeps the platform out of
   sight. Everything no beat shows is cut by the Judge.
+
+## What you get at the end
+
+- The published demo app on your tenant, in the client's colours and fonts, with its data,
+  automations and assistant.
+- `<Client> Demo Runbook.md`: the script with a shot per beat, links, the look, and the
+  decisions taken for you.
+- `<Client> Demo Explainer.md` and `.html`: what each object, automation, agent and page does
+  and how data flows, with diagrams, for anyone who was not in the room.
+- `<Client> Text2Code Prompt.md`: the same demo as a prompt for the Code Builder, carrying
+  the real ids, and the code app itself when the profile asks for it.
+- `studio/profiles/<client>.md`: the profile, ready for the next demo.
 
 ## What still reaches you
 
@@ -60,11 +74,13 @@ the Judge cannot meet. Nothing else.
 demo-studio/
   .claude-plugin/plugin.json
   skills/build/SKILL.md            the five acts
-  skills/build/references/         nebula-bridge, ask-nebula, slack-research, demo-defaults,
-                                   ledger, storyline, demo-script, runbook and profile
-                                   templates, brand-to-look
+  skills/build/references/         nebula-bridge, ask-nebula, context-research, explainer,
+                                   text2code, demo-defaults, ledger, storyline, demo-script,
+                                   runbook and profile templates, brand-to-look
   skills/profile/SKILL.md          write or edit a client profile
-  agents/                          stand-in, scout, researcher, ideator, designer, judge, rehearsal
+  agents/                          stand-in, scout, researcher, ideator, designer, judge,
+                                   rehearsal, scribe, coder
+  scripts/explainer-html.mjs       turns the explainer's Markdown into one HTML page
   scripts/nebula-root.mjs          finds the installed Nebula and checks its version
 ```
 

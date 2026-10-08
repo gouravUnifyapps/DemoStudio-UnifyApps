@@ -59,6 +59,8 @@ once each; a type the demo does not touch gets one row marked `N/A` with its rea
 | `PROFILE` | the client profile settled it; name the line |
 | `READ` | a tenant or platform read settled it; name the read and the fact |
 | `SLACK` | a Slack message settled it; name the channel and date, quote at most two sentences |
+| `EMAIL` | an email thread settled it; the subject, date and the sender's role |
+| `CALENDAR` | a calendar event settled it (the demo's length, setting or attendee count); the event and date |
 | `NEBULA` | Nebula's knowledge skill, a knowledge sheet or a Nebula read answered a platform question; name which |
 | `STAND-IN` | the Stand-in answered for the person |
 | `SCOUT` | a platform fact the Scout established beyond a plain read (feasibility, sizing) |

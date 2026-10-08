@@ -4,12 +4,14 @@ description: >
   This skill should be used when the user asks to "build a demo", "make a demo for <client>",
   "prepare a showcase app", "demo asset", "pitch app for <client>", or types /demo-studio:build
   followed by a request. It runs a team of agents (Stand-in, Scout, Researcher, Ideator,
-  Designer, Judge, Rehearsal) that pulls client context from Slack, decides whether the demo is
-  about the use case, the platform's configuration or both, settles every open decision itself,
-  asks Nebula rather than guessing about the platform, builds nothing a beat of the demo does
-  not use, builds through the installed Nebula plugin in Sonic mode, rehearses the finished
-  demo in a browser, and hands back a runbook. It never asks a clarifying question except for
-  sign-in, a delete, a real credential, or a budget it cannot meet.
+  Designer, Judge, Rehearsal, Scribe, Coder) that pulls client context from Slack, Gmail and
+  Calendar, decides whether the demo is about the use case, the platform's configuration or
+  both, settles every open decision itself, asks Nebula rather than guessing about the
+  platform, builds nothing a beat of the demo does not use, builds through the installed Nebula
+  plugin in Sonic mode, rehearses the finished demo in a browser, writes a plain-words
+  explainer with flowcharts, writes a Text2Code prompt from the built ids and can build the
+  app in the Code Builder from it, and hands back a runbook. It never asks a clarifying
+  question except for sign-in, a delete, a real credential, or a budget it cannot meet.
 metadata:
   version: "0.1.0"
   requires: "nebula plugin 3.46.0 or later"
@@ -64,9 +66,13 @@ browser the way the presenter will. The person talks twice: once to start, once 
    `drafted by Studio`, fill every line you cannot know from the request with the template's
    default, and say in one line that a profile was drafted. Never ask for a profile.
 5. Set `STUDIO` = `.sessions/<sessionId>/drafts/studio/` and make `messages/`, `work/` and
-   `questionnaires/` under it. Every file this skill and its agents write goes there, except
-   the profile and the runbook. Never write in `specs/`, `plans/`, `docs/`, `entities/`,
-   `records/` or `memory.md`: those are Nebula's copy of the platform.
+   `questionnaires/` under it. Keep `${CLAUDE_PLUGIN_ROOT}` as `STUDIO_ROOT`. Every message
+   file to an agent starts with three lines, `NEBULA=…`, `STUDIO_ROOT=…` and `STUDIO=…`, so
+   the agent finds Nebula, this plugin's references and scripts, and the session's files.
+   Every file this skill and its agents write goes under `STUDIO`, except the profile, the
+   runbook, the explainer, the Text2Code prompt and the explainer's shots folder. Never write
+   in `specs/`, `plans/`, `docs/`, `entities/`, `records/` or `memory.md`: those are Nebula's
+   copy of the platform.
 6. Read [references/demo-defaults.md](references/demo-defaults.md). It overrides Nebula's
    `fast-defaults.md` wherever the two disagree.
 7. Keep [references/ask-nebula.md](references/ask-nebula.md) at hand. Every question about
@@ -97,12 +103,13 @@ Start four agents in ONE message, each with a message file under `$STUDIO/messag
 - `demo-studio:designer` → `designer-1.md` with `phase: brand`: the profile's site, the
   request, [references/brand-to-look.md](references/brand-to-look.md). It writes
   `$STUDIO/brand.md`: the brand evidence and the subject's own world. No look line yet.
-- `demo-studio:researcher` → `researcher-1.md`: the request, the profile (its `slack` line),
-  [references/slack-research.md](references/slack-research.md). It finds the relevant Slack
-  channels itself and writes `$STUDIO/slack-notes.md`: the ask in the client's and the team's
-  words, the audience, the intent signals with a proposed `demo.intent`, constraints,
-  materials, vocabulary and `open rows`. With no Slack connected it writes one line saying so
-  and the build goes on; it never waits for Slack.
+- `demo-studio:researcher` → `researcher-1.md`: the request, the profile (its `sources` and
+  `slack` lines), [references/context-research.md](references/context-research.md). It finds
+  the relevant Slack channels, Gmail threads and Calendar events itself and writes
+  `$STUDIO/context-notes.md`: the ask in the client's and the team's words, the audience and
+  the demo slot's length and setting, the intent signals with a proposed `demo.intent`,
+  constraints, materials, vocabulary and `open rows`. A source that is not connected is noted
+  in one line and skipped; the build never waits for a connector.
 
 Keep the agent ids the Agent tool returns for Scout and the Stand-in: later rounds continue
 them with SendMessage so their context survives. Researcher, Ideator, Designer and Judge get a
@@ -114,9 +121,9 @@ When all four report, open `$STUDIO/ledger.md` from
 [references/ledger-template.md](references/ledger-template.md): one row per decision key from
 every `open rows` list, deduplicated by meaning, each with its candidates and who raised it.
 Then start `demo-studio:stand-in` → `stand-in-1.md`: the profile, the request, the ledger,
-`storylines.md`, `scout.md`, `slack-notes.md`, Nebula memory (`memory get`), and the rule that
+`storylines.md`, `scout.md`, `context-notes.md`, Nebula memory (`memory get`), and the rule that
 it settles `demo.intent` first (use case, platform configuration, or both) from the request,
-the profile and the Slack notes with the sentences that show it quoted, then answers every
+the profile and the context notes with the sentences that show it quoted, then answers every
 other row in one specific line tagged `STAND-IN` (or `SLACK` when a message settled it),
 scores each storyline for fit 1 to 5 with a reason, refuses any answer that adds an entity no
 beat uses, and marks a row `user-only` only for a credential or a delete. Merge its answers
@@ -136,7 +143,7 @@ left open. Merge into the ledger.
 
 **Round 2.** In ONE message start:
 
-- `demo-studio:designer` → `designer-2.md` with `phase: look`: `brand.md`, `slack-notes.md`
+- `demo-studio:designer` → `designer-2.md` with `phase: look`: `brand.md`, `context-notes.md`
   (brand hints, vocabulary), the chosen storyline, the settled `demo.intent`, the profile,
   brand-to-look.md, and the Nebula files the bridge names for the look (`app-look.md`,
   `default-looks.md`, `app-page-planner/SKILL.md`, `kit.md`). It writes `$STUDIO/design.md`:
@@ -200,6 +207,20 @@ with these overrides:
 
 After the graph drains, run `plan finish` and keep its `entityTable`.
 
+## Act 3b: The Text2Code prompt, and the code app
+
+Start `demo-studio:coder` → `coder-1.md`: the profile (its `frontend` line), the chosen
+storyline, `design.md`, the ledger, the entity table, the tenant host, and
+[references/text2code.md](references/text2code.md). It always writes
+`<Client> Text2Code Prompt.md` in the working folder, from reads of the built ids and their
+contracts. With `frontend: code` or `both` it then drives the Code Builder in a browser as
+text2code.md says: paste, review and correct the plan, approve, answer the builder's questions
+itself, iterate one change a turn for at most 6 turns, publish, and report
+`$STUDIO/code-app.md`. With `frontend: code` the brief of Act 2 carries no page, job, design,
+app look or publish lines, and Act 4 is the Coder's own walk of the code app. A sign-in page in
+that browser is the one allowed stop. Say `Text2Code prompt written.` or
+`Code app published: <url>.`
+
 ## Act 4: Rehearsal
 
 Write `$STUDIO/demo-script.md` from the chosen storyline's beats and the plan's results, in the
@@ -219,14 +240,25 @@ earlier findings. Two rounds at most; a beat still failing is reported as unveri
 
 Say one line per beat that needed a fix, and the final `Rehearsal: <n> of <n> beats pass.`
 
+## Act 4b: The explainer
+
+Start `demo-studio:scribe` → `scribe-1.md`: the entity table, the demo script, `rehearsal.md`
+with its shot folder, `code-app.md` when it exists, the profile, the context notes, the client
+slug, and [references/explainer.md](references/explainer.md). It reads what exists through the
+Nebula cache and writes `<Client> Demo Explainer.md` and `<Client> Demo Explainer.html` in the
+working folder, with the shots under `studio/explainer/<client-slug>/`: one picture of the
+whole thing, an entity diagram, a step diagram and five plain lines per automation, the
+assistant, the pages, and one record's journey through the beats. Say `Explainer written.`
+
 ## Act 5: Handoff
 
 1. Follow nebula-bridge.md § Finish: feature upserts, `solution context`, and memory lines
    only for what clears Nebula's bar (an unexplained failure, a tenant fact, a correction).
 2. Write `<Client> Demo Runbook.md` in the working folder from
    [references/runbook-template.md](references/runbook-template.md): the script with a shot per
-   beat, the entity table as Nebula returned it, the brand evidence, the Slack channels read
-   and the `demo.intent` decision with the sentences that settled it, the list headed
+   beat, the entity table as Nebula returned it, the brand evidence, the sources read (Slack,
+   email, calendar) and the `demo.intent` decision with the sentences that settled it, links
+   to the explainer, the Text2Code prompt and the code app when there is one, the list headed
    `Decisions taken for you` (every `STAND-IN`, `SLACK`, `JUDGE`, `DESIGNER`, `NEBULA` and
    `MODERATOR` row with the profile line that would have avoided it), and what is unverified.
 3. Say five to eight lines: what exists, what was published or deployed, what is unverified,

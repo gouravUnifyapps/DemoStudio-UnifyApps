@@ -29,7 +29,7 @@ the audience will notice, not the one that changes the least.
 ## Demo intent: what the client wants out of the demo
 
 Settled first, by the Stand-in, as ledger row `demo.intent`, from the request, the profile's
-`intent` line and the Slack notes' intent signals, with the sentences that show it quoted.
+`intent` line and the context notes' intent signals, with the sentences that show it quoted.
 Three values:
 
 - **`use-case`**: the audience wants to see their problem solved. The storyline is the
@@ -113,6 +113,21 @@ the person can drop the hood beats from the script.
 - No connection is created: Nebula reads connections and never creates one. A storyline that
   needs a connection the tenant does not have is cut by the Judge or made a `manual` task
   listed in the runbook, never asked about.
+
+## Frontend: which builder makes the app
+
+The profile's `frontend` line (text2code.md § The frontend line): `nebula` (default) builds the
+Config app through Nebula's page builders and reviewers; `code` builds the app in the Code
+Builder from the Text2Code prompt, with no page lines in the brief; `both` does both, which
+suits a `platform` demo that compares the two builders. The Text2Code prompt is written
+whatever the value, from the built ids, so the person can try the Code Builder later.
+
+## Always produced
+
+Whatever the storyline: the runbook; the explainer, in Markdown and as an HTML page, with one
+picture of the whole thing, an entity diagram, a step diagram and five plain lines per
+automation, and one record's journey; the Text2Code prompt; and the client profile with the
+decisions it should carry next time.
 
 ## Release and access
 

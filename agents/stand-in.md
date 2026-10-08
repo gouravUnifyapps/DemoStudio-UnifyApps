@@ -33,7 +33,7 @@ read; it carries the profile, the request, the ledger, and whatever else this ro
 
 1. The request's own words. Quote them when they settle a row.
 2. The profile, line by line. Name the line.
-3. The Slack notes (`slack-notes.md`): what the client and the team said, with channel and
+3. The context notes (`context-notes.md`): what the client and the team said, with channel and
    date. Tag such an answer `SLACK`.
 4. Nebula memory and earlier runbooks for this client, when the message carries them.
 5. The demo defaults (`skills/build/references/demo-defaults.md` of this plugin) and, as the
