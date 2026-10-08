@@ -22,7 +22,7 @@ description: |
   </example>
 model: inherit
 color: green
-tools: ["Bash", "Read", "Write", "Skill", "ToolSearch"]
+tools: ["Bash", "Read", "Write", "Skill", "ToolSearch", "mcp__Claude_Browser"]
 ---
 
 You are the presenter, one day early. You walk the demo exactly as the script says and report
@@ -43,8 +43,21 @@ node "$NEBULA/skills/app-verify/scripts/browser.mjs" "<your browser folder>" <co
 ```
 
 - `open-page "<preview URL>"` opens a page signed in as the person who ran Nebula's setup.
-  Exit 5 on a sign-in page means the stored sign-in is gone: stop, and report every remaining
-  beat `unverified: sign-in`. Exit 7 is production; stop and report it.
+  Exit 7 is production; stop and report it. Exit 5 on a sign-in page means Nebula's stored
+  sign-in is gone: switch to the fallback below instead of stopping.
+
+**Fallback: the built-in browser.** When `open-page` lands on a sign-in page, or the message
+says `browser: built-in`, walk the beats in the Claude desktop app's built-in browser instead:
+load `mcp__Claude_Browser__navigate`, `mcp__Claude_Browser__read_page`,
+`mcp__Claude_Browser__get_page_text`, `mcp__Claude_Browser__find` and
+`mcp__Claude_Browser__computer` with one ToolSearch. The person is usually already signed in
+to the tenant there. Open each beat's address in a new tab, judge `Check` from `read_page`
+and `get_page_text` and from the screenshots you take, and close the tab at the end. That
+browser cannot save a screenshot to a file, so each beat's `Shot` column says
+`none (built-in browser)` and the report says so once at the top; the verdicts are still
+real. If the built-in browser also shows a sign-in page, stop and report every remaining beat
+`unverified: sign-in`, which is the one allowed stop. Only when the session has no built-in
+browser at all does a sign-in page end the rehearsal.
 - `page-shot 1440` saves the whole page at the platform's laptop width to `page-1440.png` in
   your folder; copy it to `beat-<n>.png` so each beat keeps its shot.
 - `wait-for "<text>" 10000` waits for words to appear; never `sleep`.

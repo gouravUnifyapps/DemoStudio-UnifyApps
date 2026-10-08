@@ -217,8 +217,10 @@ contracts. With `frontend: code` or `both` it then drives the Code Builder in a 
 text2code.md says: paste, review and correct the plan, approve, answer the builder's questions
 itself, iterate one change a turn for at most 6 turns, publish, and report
 `$STUDIO/code-app.md`. With `frontend: code` the brief of Act 2 carries no page, job, design,
-app look or publish lines, and Act 4 is the Coder's own walk of the code app. A sign-in page in
-that browser is the one allowed stop. Say `Text2Code prompt written.` or
+app look or publish lines, and Act 4 is the Coder's own walk of the code app. Every browser
+step in this plugin takes the desktop app's built-in browser first, where the person is
+usually already signed in to the tenant, then Claude in Chrome, then Nebula's own browser. A
+sign-in page in that browser is the one allowed stop. Say `Text2Code prompt written.` or
 `Code app published: <url>.`
 
 ## Act 4: Rehearsal

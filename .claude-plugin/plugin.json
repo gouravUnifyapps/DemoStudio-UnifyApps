@@ -1,6 +1,6 @@
 {
   "name": "demo-studio",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Builds client-branded UnifyApps demo assets from one request. A team of agents pulls client context from Slack, Gmail and Calendar, decides whether the demo is about the use case or the platform's configuration, asks Nebula about the platform instead of guessing, settles every clarifying question itself, builds nothing a beat does not use, lets the installed Nebula plugin build the result, rehearses the demo in a browser, writes a plain-words explainer with diagrams and a Text2Code prompt, and can build the app in the Code Builder from it. Requires the Nebula plugin.",
   "author": {
     "name": "Gourav Mahunta"

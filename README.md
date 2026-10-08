@@ -51,6 +51,17 @@ show off approvals by amount and an AI assistant · tenant orbit.uat.unifyapps.c
   legible, with hood beats that open the builder; a `use-case` demo keeps the platform out of
   sight. Everything no beat shows is cut by the Judge.
 
+## Which browser it uses
+
+Wherever an agent needs a browser signed in to the tenant, it takes the Claude desktop app's
+built-in browser first (the pane beside the chat, where you are usually already signed in),
+then Claude in Chrome, then Nebula's own Chrome for Testing. The Designer reads the client's
+public site the same way, in a new tab it closes afterwards. The Rehearsal agent starts in
+Nebula's browser because that one can save a screenshot per beat for the runbook; when Nebula's
+stored sign-in has expired it falls back to the built-in browser, keeps the verdicts and notes
+that the shots are missing. Nothing ever types a password: a sign-in page is the one stop
+that reaches you.
+
 ## What you get at the end
 
 - The published demo app on your tenant, in the client's colours and fonts, with its data,

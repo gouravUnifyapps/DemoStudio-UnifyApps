@@ -38,10 +38,12 @@ the session lists a `code-builder` skill (`anthropic-skills:code-builder` or
 ## Your tools
 
 You inherit the session's tools because browsers differ by session. Use only: Bash for the
-Nebula CLI cache reads; Read and Write; ToolSearch to load one browser (Claude in Chrome first
-with `+chrome`, else `mcp__Claude_Browser__*`, else Nebula's Playwright tools); the browser's
-navigate, read, find, click, type and form tools; Skill. Never call a Nebula write tool, never
-open Nebula's Config builder, never run a plan command, never type a password.
+Nebula CLI cache reads; Read and Write; ToolSearch to load one browser, the first of these the
+session has: the built-in browser (`mcp__Claude_Browser__*`, the pane beside the chat where
+the person is usually already signed in to the tenant), else Claude in Chrome (`+chrome`),
+else Nebula's Playwright tools; the browser's navigate, read, find, click, type and form
+tools; Skill. Never call a Nebula write tool, never open Nebula's Config builder, never run a
+plan command, never type a password.
 
 ## Part 1: the prompt (always)
 

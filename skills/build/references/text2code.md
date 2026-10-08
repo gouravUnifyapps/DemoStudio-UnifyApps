@@ -73,10 +73,13 @@ Keep it under two screens. A line the Code Builder does not need is a line it ma
 
 ## Driving the Code Builder (frontend `code` or `both`)
 
-The Coder works in a browser signed in to the tenant. In order of preference: Claude in Chrome
-(`+chrome` with ToolSearch; the person's own signed-in session, and they can watch), the Claude
-desktop browser (`mcp__Claude_Browser__*`), Nebula's Playwright server. A browser that lands on
-a sign-in page is the one allowed stop: say so in one line and wait; never type a password.
+The Coder works in a browser signed in to the tenant. In order of preference: the Claude
+desktop app's built-in browser (`mcp__Claude_Browser__*`, loaded with one ToolSearch; it is the
+pane beside the chat, the person is usually already signed in to the tenant there, and they
+can watch), then Claude in Chrome (`+chrome`; the person's own Chrome), then Nebula's
+Playwright server (a fresh browser with no sign-in). Take the first whose tools the session
+has; never mix two. A browser that lands on a sign-in page is the one allowed stop: say so in
+one line and wait; never type a password.
 
 1. **Open the create screen.** From the tenant's home, Applications in the left navigation,
    then Create Application. The screen says "Prompt. Build. Ship." with two tabs above the
