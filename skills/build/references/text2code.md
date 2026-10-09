@@ -47,6 +47,10 @@ For each page of the storyline, in order:
 ## Quality bar
 <The refusal list from code-design-brief.md § The quality bar, pasted: a page where the brand appears only in the logo; the system font when the brief names another; an unstyled table; pure black text; a heading under 2x the body; no hover, transition, entrance, skeleton or empty state; any screen that would pass as another company's app with the logo swapped. End with: "Treat each of these as a bug.">
 
+## Reference mockup (when the person chose one)
+Match the mockup below in layout, type, colour, spacing and component styling. Its CSS variables are the palette; use the same names. Its header, grid and regions are the layout. Where a page of this app has no counterpart in the mockup, compose it from the mockup's parts.
+<the mockup's complete `<style>` block, then the lead page's markup trimmed to its structure: header, hero or KPI band, the main list or table with two example rows, the main action, one chip per state, the secondary region; under about 200 lines, in one fenced html block>
+
 ## Data: use these objects, create none
 For each object:
 - `<OBJ_id>` <Name>: <field> (<type>), … · picklist <field>: <code> "Label", … · <n> seeded rows exist, including <the story row by name>
@@ -88,7 +92,12 @@ one line and wait; never type a password.
    prompt box, Code and Config. Select **Code**. If the Code tab is missing, the Code Builder
    is not enabled on this tenant: write that in `code-app.md`, mark the code app unverified,
    and stop. Ask nobody.
-2. **Paste the prompt** whole into the box and press Build. A failure in red under the box is
+2. **Paste the prompt** whole into the box. When `design-reference.html` exists and the
+   browser can drive the attach control (Claude in Chrome's file upload, or a visible attach
+   button the built-in browser can click and a file chooser it can fill), attach the mockup
+   file and its PNG too; when it cannot, the `## Reference mockup` section in the prompt
+   already carries the mockup's CSS and structure, which is enough. Press Build. A failure
+   in red under the box is
    read, the prompt fixed for exactly what it names (an attachment too big, a line it
    refused), and sent once more; a second failure ends the attempt as unverified.
 3. **The plan.** A Plan card appears. Open Review plan and hold it against the prompt's
@@ -112,8 +121,10 @@ one line and wait; never type a password.
 7b. **Design review, with fresh eyes.** When the beats pass, the Coder writes `code-app.md`
    with the preview address and the page list and ends its reply with `READY FOR REVIEW`.
    The moderator starts `demo-studio:critic` with that address, `code-design.md`, `brand.md`
-   and the beats; it screenshots each page, reads the fonts and colours off the page, scores
-   ten qualities (Nebula's seven plus brand, distinctiveness and motion) and returns `send`
+   and the beats, and `design-reference.html` when the person chose a mockup; it screenshots
+   each page, reads the fonts and colours off the page, scores ten qualities (Nebula's seven
+   plus brand, distinctiveness and motion) and, with a mockup, an eleventh, `fidelity`: the
+   built app matches the chosen mockup, judged with the two side by side; and returns `send`
    lines. The moderator passes them to the Coder by message; the Coder sends each as one
    turn, at most 4 a round, then reports again, and a fresh Critic judges with the earlier
    findings and scores. Two rounds at most. A quality that got worse is undone with the next

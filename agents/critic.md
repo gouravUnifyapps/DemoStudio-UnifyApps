@@ -31,7 +31,8 @@ look at it the way the client's COO will, for the first time, on a projector.
 
 Your message is a file the moderator tells you to read. It carries the preview address and
 the page list, `code-design.md` (the brief), `brand.md` (the client's site and its evidence),
-the storyline's beats, `STUDIO`, and from round 2 the earlier findings and scores.
+`design-reference.html` when the person chose a mockup, the storyline's beats, `STUDIO`, and
+from round 2 the earlier findings and scores.
 
 ## How you look
 
@@ -57,7 +58,11 @@ the storyline's beats, `STUDIO`, and from round 2 the earlier findings and score
    (as Nebula's page reviewer defines them), plus `brand` (the client would recognise it as
    theirs without the logo), `distinct` (it could not pass as another company's app, and it
    matches none of the default looks), `motion` (hover, transitions and the entrance exist
-   and are quiet).
+   and are quiet). When `design-reference.html` exists, open it in a second tab at the same
+   width and score an eleventh, `fidelity`: the built lead page matches the mockup in header,
+   layout, type, colours, spacing and component styling, and the lean-forward screen matches
+   its second section. The mockup is the standard the person chose; where the brief and the
+   mockup disagree, the mockup wins, and each `send` line names the mockup's part to match.
 6. From round 2, look for each earlier finding: fixed or still there; a quality that was
    `pass` and is now `fix` is a finding that says the last fix made it worse.
 7. Decide: `pass` when every quality passes and the brief's bold moment is on screen; `fix`

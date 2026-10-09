@@ -125,6 +125,17 @@ graph, ontology, search, campaigns, pipelines); `off` skips the Innovator. An ad
 that becomes the lean-forward moment is the goal; one that adds a page is cut. Ideas not
 admitted go in the runbook under "Ideas for the next demo".
 
+## Mockups: the one choice the person asked for
+
+Before anything is built, the Mockups agent draws the number of UI directions the profile's
+`mockups` line says (default 4, from 3 to 5) as complete self-contained HTML pages of the
+lead screen and the lean-forward screen, with the client's real brand and the storyline's
+real data, no two sharing a header treatment, a density or a colour strategy (mockups.md).
+The person chooses one; a change request gets one more round. The chosen file is the design
+reference: the Text2Code prompt carries its CSS and structure, the Critic scores `fidelity`
+to it, and the Designer re-derives the brief, the Nebula look line and the page designs from
+it. `auto` takes the recommendation without asking; `off` skips the step.
+
 ## Design quality for code apps
 
 A code app is held to the code design brief (code-design-brief.md), not to Nebula's look

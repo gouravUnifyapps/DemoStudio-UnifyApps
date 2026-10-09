@@ -32,7 +32,13 @@ Skip this and Demo Studio drafts a profile for you.
 ```
 
 **4. Sign in, if asked.**
-The only thing it may ask you is to sign in to the tenant. Pick "Open browser" and sign in.
+If your login has expired it asks you to sign in to the tenant. Pick "Open browser" and sign in.
+
+**4b. Pick a design.**
+Before anything is built it shows you three to five mockups of the demo's main screen, each a
+different design in the client's colours and fonts with the demo's own data, and asks which
+one to follow. Pick one, or type a change such as "B with A's header" and it redraws once.
+This is the one question it always asks; set `mockups: auto` in the profile to skip it.
 
 **5. Wait.**
 You will see short progress lines, such as "Round 1: picked a storyline" and "Task 3 of 14 done". Behind the scenes it:
@@ -67,12 +73,13 @@ When it finishes, it gives you a link to `<Client> Demo Runbook.md`. That is you
 
 ## When it will stop and ask you
 
-Only for these four things:
+Only for these things:
 
-1. Signing in, when your login has expired.
-2. Deleting anything.
-3. A password or connection the tenant does not have.
-4. A demo too big for the budget, when it cannot cut it down.
+1. Which mockup to follow (the one question you asked for; `mockups: auto` skips it).
+2. Signing in, when your login has expired.
+3. Deleting anything.
+4. A password or connection the tenant does not have.
+5. A demo too big for the budget, when it cannot cut it down.
 
 ## Tips
 

@@ -27,7 +27,7 @@ Built <date> on <host> · solution <name> · Nebula <version> · Demo Studio <ve
 <The entityTable exactly as plan finish returned it.>
 
 ## The look
-<The app look line, and two lines from brand.md on what came from the client's site and what was approximated (font, greys).>
+<The chosen mockup: letter, direction, and a link to the gallery and the file; then the app look line, and two lines from brand.md on what came from the client's site and what was approximated (font, greys).>
 
 ## Assistant answers (when there is one)
 | Question | Answer in rehearsal |

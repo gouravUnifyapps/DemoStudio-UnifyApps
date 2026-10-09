@@ -24,6 +24,7 @@ request.
 - slack: <channels to read, such as #acme-deal #sales-emea, or "find them">
 - frontend: <nebula | code | both> · <nebula builds the Config app; code builds it in the Code Builder from the Text2Code prompt; both does both>
 - innovate: <nebula | all | off> · <nebula admits platform-feature ideas Nebula can build; all admits ideas a browser agent could build from the operator skills; off skips the Innovator>
+- mockups: <3 | 4 | 5 | auto | off> · <a number draws that many UI mockups in Claude and asks you to choose one, the one question you asked for; auto takes the recommendation; off skips them>
 - avoid: <what must not appear or happen>
 - tenant: <host> · solution: <name> (create if missing)
 - release: <publish and deploy without asking | leave unpublished> · visibility <PRIVATE | shareable>
@@ -46,6 +47,7 @@ request.
 | slack | `find them`: the Researcher searches channels by the client's name, domain and the demo words |
 | frontend | `nebula`; the Text2Code prompt is written in every case |
 | innovate | `nebula`: the Innovator runs, and the Judge admits at most two ideas Nebula can build |
+| mockups | `4`: four directions drawn, shown, and one chosen by you before anything is built |
 | avoid | deletes · anything needing a connection the tenant lacks · more pages than the budget |
 | tenant | the host of a builder link in the request; else the folder's Nebula solution; else the most recent tenant Nebula's `state next` lists |
 | solution | `<Client> Demo` |
